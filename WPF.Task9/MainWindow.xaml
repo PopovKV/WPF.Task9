@@ -1,0 +1,66 @@
+﻿<Window x:Class="WPF.Task9.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF.Task9"
+        xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Style="{DynamicResource WindowStyle}">
+    <Window.CommandBindings>
+        <CommandBinding Command="Close" Executed="CloseExecuted"/>
+        <CommandBinding Command="Open" Executed="OpenExecuted"/>
+        <CommandBinding Command="Save" Executed="SaveExecuted"/>
+    </Window.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Menu Style="{DynamicResource MenuItemStyle}">
+            <MenuItem Header="_Файл" Style="{DynamicResource MenuItemStyle}">
+                <MenuItem Header="_Открыть" Command="Open" Style="{DynamicResource MenuItemStyle}"/>
+                <MenuItem Header="_Сохранить" Command="Save" Style="{DynamicResource MenuItemStyle}"/>
+                <Separator/>
+                <MenuItem Header="_Выход" Command="Close" Style="{DynamicResource MenuItemStyle}"/>
+            </MenuItem>
+            <MenuItem Header="Окно" Style="{DynamicResource MenuItemStyle}">
+                <MenuItem Header="_Тема" Style="{DynamicResource MenuItemStyle}">
+                    <MenuItem Header="Светлая тема" Click="MenuItem_Click" Style="{DynamicResource MenuItemStyle}"/>
+                    <MenuItem Header="Темная тема" Click="MenuItem_Click_1" Style="{DynamicResource MenuItemStyle}"/>                    
+                </MenuItem>           
+            </MenuItem>
+        </Menu>
+        <ToolBarTray Grid.Row="1" Style="{DynamicResource ToolBarTrayStyle}">
+            <ToolBar Margin="5" Padding="5" Style="{DynamicResource ToolBarStyle}">
+                <ComboBox Margin="5" Padding="5" SelectedIndex="0" Width="200" SelectionChanged="ComboBox_SelectionChanged" ItemsSource="{StaticResource FontsFamilies}" Style="{DynamicResource ComboBoxStyle}"/>
+
+                <ComboBox Margin="5" Padding="5" SelectedIndex="0" Width="50" SelectionChanged="ComboBox_SelectionChanged_1" ItemsSource="{StaticResource FontsSizes}" Style="{DynamicResource ComboBoxStyle}"/>
+                           </ToolBar>
+            <ToolBar Margin="5" Padding="5" Style="{DynamicResource ToolBarStyle}">
+                <Button x:Name="ButtonBold" Click="Button_Click">
+                    <Image Source="Data/text_bold.png"/>
+                </Button>
+                <Separator/>
+                <Button x:Name="ButtonItalic" Click="Button_Click_1">
+                    <Image Source="Data/text_italic.png"/>
+                </Button>
+                <Separator/>
+                <Button x:Name="ButtonUnderlined" Click="Button_Click_2">
+                    <Image Source="Data/text_underlined.png"/>
+                </Button>
+                <Separator/>
+            </ToolBar>
+            <ToolBar Margin="5" Padding="5" Style="{DynamicResource ToolBarStyle}">
+                <StackPanel VerticalAlignment="Center">
+                    <RadioButton Content="Черный" IsChecked="True" Checked="RadioButton_Checked" Style="{DynamicResource RadioButtonStyle}"/>
+                    <RadioButton Content="Красный" Checked="RadioButton_Checked_1" Style="{DynamicResource RadioButtonStyle}"/>
+                </StackPanel>
+            </ToolBar>
+        </ToolBarTray>
+        <TextBox x:Name="textBox" Grid.Row="2" Margin="5" Padding="5" TextWrapping="Wrap" Foreground="Black" VerticalScrollBarVisibility="Auto" FontSize="12" FontFamily="Arial" Style="{DynamicResource TextBoxStyle}"/>
+
+    </Grid>
+</Window>
